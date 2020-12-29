@@ -18,3 +18,10 @@
   font-size: 3rem;
 }
 
+.dataset {
+  display: flex;
+  height: 15vh;
+  width: 60%;
+  align-items: center;
+  justify-content: center;
+}
