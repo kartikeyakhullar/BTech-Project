@@ -5,15 +5,17 @@ import List from './List';
 const fixedArray = ['covid', 'coronavirus', 'symptoms', 
 'social', 'distancing', 'incubation', 'comorbidity', 'pandemic', 
 'community', 'spread', 'quarantine', 'isolation', 'virus', 'sars', 'epidemic', 
-'herd immunity', 'flattening', 'curve',];
+'herd immunity', 'flattening', 'curve', 'bronchial'];
+
 
 function SearchResults() {
 
     const [loading,setLoading] = useState(false);
     const [keywords, setKeywords] = useState([]);
     const [count,setCount] = useState(0);
+    const [result,setResult] = useState({})
 
-    const handler = ()=>{
+    const handler = async()=>{
         setLoading(true);
         let words = document.getElementById("inp").value.split(" ");
         words = words.map((x)=>{
@@ -30,6 +32,11 @@ function SearchResults() {
             setLoading(false);
             setKeywords([]);
         }else if(searchWords.length > 0){
+            console.log(searchWords[0]);
+            const response = await fetch(`http://localhost:9200/summaries/_search?q=${searchWords[0]}`);
+            const res = await response.json();
+            setResult(res);
+            // console.log(res);
             setCount(1);
             setLoading(false);
             setKeywords(searchWords);
@@ -59,7 +66,7 @@ function SearchResults() {
             <Button size="large" onClick={handler}> Search </Button>
         </div>
         <div className="home">
-        { (!loading &&  keywords.length > 0) ? <List keywords = {keywords} /> : <></>}
+        { (!loading &&  keywords.length > 0) ? <List keywords = {keywords} result = {result} /> : <></>}
         </div>
         </>
     )

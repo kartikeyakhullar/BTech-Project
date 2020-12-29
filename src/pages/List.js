@@ -1,25 +1,29 @@
 import React from 'react'
 
 
-function List({keywords}) {
-    // 0-99
-    const idx1 = Math.floor(Math.random() * 100); 
-    // 100-199
-    const idx2 = Math.floor(Math.random() * 100) + 100;
-    // 200-299
-    const idx3 = Math.floor(Math.random() * 100) + 200;
+function List({keywords,result}) {
+    const final = result["hits"].hits;
+    console.log(final);
     return (
-        <>
+        <div>
             <h5> Keywords searched : </h5>
             {keywords.map((word)=>{
                 return  word 
             })}
-            <ul>
-                <li> {} </li>
-                <li> {} </li>
-                <li> {} </li>
-            </ul>
-        </>
+            <>
+                {
+                    final.map((element,index)=>{
+                        return (
+                            <div key={index}>
+                                <p>{element._source.abstract}</p>
+                                <p>{element._source.url}</p>
+                                <hr />
+                            </div>
+                        )
+                    })
+                }
+            </>
+        </div>
     )
 }
 
