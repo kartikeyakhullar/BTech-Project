@@ -6,21 +6,19 @@ import Report from './pages/Report';
 import Team from './pages/Team';
 import Presentation from './pages/Presentation';
 import Dataset from './pages/Dataset';
+import bg from './images/bg.png';
 
 function App() {
   return (
-    <>
+    
       <Router>
         <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/report" component={Report} />
           <Route path="/team" component={Team} />
-          <Route path="/presentation" component={Presentation} />
           <Route path="/dataset" component={Dataset} />
         </Switch>
       </Router>
-    </>
   );
 }
 

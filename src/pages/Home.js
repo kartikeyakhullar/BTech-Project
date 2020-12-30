@@ -1,9 +1,10 @@
 import React from 'react'
 import SearchResults from './SearchResults';
 
+
 function Home() {
     return (
-        <div className="home">
+        <div >
             <SearchResults />
         </div>
     )
