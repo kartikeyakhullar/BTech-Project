@@ -11,7 +11,7 @@ import backgroundimage from '../images/bg.png';
 const fixedArray = ['covid', 'coronavirus', 'symptoms', 
 'social', 'distancing', 'incubation', 'comorbidity', 'pandemic', 
 'community', 'spread', 'quarantine', 'isolation', 'virus', 'sars', 'epidemic', 
-'herd immunity', 'flattening', 'curve', 'bronchial'];
+'herd', 'immunity', 'flattening', 'curve', 'bronchial', 'masks', 'mask', 'dry', 'cough'];
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,7 +55,7 @@ function SearchResults() {
             setKeywords([]);
         }else if(searchWords.length > 0){
             console.log(searchWords[0]);
-            const response = await fetch(`http://localhost:9200/abstracts/_search?q=${searchWords[0]}`);
+            const response = await fetch(`http://localhost:9200/summaries/_search?q=${searchWords[0]}`);
             const res = await response.json();
             setResult(res);
             // console.log(res);
@@ -86,12 +86,12 @@ function SearchResults() {
         <div className={classes.root} style={{ 
                     backgroundImage: backgroundimage }}>
         <Grid container spacing={3}>
-            <Grid item xs={12} className={classes.grid}>
+            <Grid item xs={12} className={classes.grid} style={{marginLeft : "40%"}}>
                 <TextField id="inp" label="Input" variant="outlined" xs={12} />
                 <Button size="large" onClick={handler}> Search </Button>
             </Grid>
-            <Grid item xs={12} className={classes.grid}>
-                 { (!loading &&  keywords.length > 0) ? <Grid item xs={12} className={classes.grid}> <List keywords = {keywords} result = {result} /> </Grid> : <></>}
+            <Grid item xs={12} className={classes.grid} style={{marginLeft : "10%"}}>
+                { (!loading &&  keywords.length > 0) ? <Grid item xs={12} className={classes.grid}> <List keywords = {keywords} result = {result} /> </Grid> : <></>}
             </Grid>
         </Grid>
         </div>

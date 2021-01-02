@@ -10,7 +10,7 @@ class LongText extends Component {
         const {content} = this.props;
         let limit = 250;
         const {showAll} = this.state;
-        console.log(content);
+        // console.log(content);
         if(content.length<=limit) {
             
             return <div>{content}</div>
